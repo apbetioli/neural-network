@@ -2,10 +2,10 @@ import numpy as np
 from nn import NN, Layer
 
 X = np.array([
-    [0,0,1],
-    [0,1,1],
-    [1,0,1],
-    [1,1,1]])
+    [0,0],
+    [0,1],
+    [1,0],
+    [1,1]])
 
 Y = np.array([[0],
               [1],
@@ -13,7 +13,7 @@ Y = np.array([[0],
               [0]])
 
 nn = NN()
-nn.add(Layer(3,3))
+nn.add(Layer(2,3))
 nn.add(Layer(3,1))
 
 print("Predictions before training")
