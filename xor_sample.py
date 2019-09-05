@@ -12,9 +12,9 @@ Y = np.array([[0],
               [1],
               [0]])
 
-nn = NN()
-nn.add(Layer(2,3))
-nn.add(Layer(3,1))
+nn = NN(2)
+nn.add(Layer(3))
+nn.add(Layer(1))
 
 print("Predictions before training")
 print(nn.feed_forward(X))

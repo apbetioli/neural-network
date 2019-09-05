@@ -1,9 +1,12 @@
 import numpy as np
 
 class Layer:
-    def __init__(self, number_of_inputs, number_of_neurons):
-        self.weights = 2 * np.random.random((number_of_inputs, number_of_neurons)) - 1
-        self.bias = 2 * np.random.random((1, number_of_neurons)) - 1
+    def __init__(self, number_of_neurons):
+        self.number_of_neurons = number_of_neurons
+
+    def set_number_of_inputs(self, number_of_inputs):
+        self.weights = 2 * np.random.random((number_of_inputs, self.number_of_neurons)) - 1
+        self.bias = 2 * np.random.random((1, self.number_of_neurons)) - 1
 
     def backpropagate(self, error, learning_rate):
         e = error * self.nonlin(self.output, derivative=True)
@@ -28,11 +31,14 @@ class Layer:
         return 1/(1+np.exp(-x))
                 
 class NN:
-    def __init__(self):
+    def __init__(self, number_of_inputs):
         self.layers = []
+        self.next_number_of_inputs = number_of_inputs
 
     def add(self, layer):
+        layer.set_number_of_inputs(self.next_number_of_inputs)
         self.layers.append(layer)
+        self.next_number_of_inputs = layer.number_of_neurons
 
     def backpropagate(self, error, learning_rate):
         e = error
