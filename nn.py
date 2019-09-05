@@ -1,14 +1,7 @@
 import numpy as np
 
-LEARNING_RATE = 1
-TRAINING_STEPS = 10000
-LOG_PERIODS = 10
-
 class Layer:
     def __init__(self, number_of_inputs, number_of_neurons):
-        self.number_of_inputs = number_of_inputs
-        self.number_of_neurons = number_of_neurons
-
         self.weights = 2 * np.random.random((number_of_inputs, number_of_neurons)) - 1
         self.bias = 2 * np.random.random((1, number_of_neurons)) - 1
 
@@ -61,7 +54,7 @@ class NN:
         error = self.mean_squared_error(yHat, Y)
         return self.backpropagate(error, learning_rate)
     
-    def train(self, X, Y, learning_rate = LEARNING_RATE, steps = TRAINING_STEPS, log_periods = LOG_PERIODS):
+    def train(self, X, Y, learning_rate = 1, steps = 10000, log_periods = 10):
         print("Training...")
 
         steps_per_periods = int(steps/log_periods)
